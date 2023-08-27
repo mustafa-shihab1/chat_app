@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MainButton extends StatelessWidget {
+  final String title;
   const MainButton({
+    required this.title,
     super.key,
   });
 
@@ -19,7 +21,7 @@ class MainButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
         ),
-        child: const Text('Login'),
+        child: Text(title),
       ),
     );
   }
