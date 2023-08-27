@@ -1,4 +1,5 @@
 import 'package:chat_app/view/login_view.dart';
+import 'package:chat_app/view/register_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,8 +16,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
+      routes: {
+        '/login': (context) => const LoginView(),
+        '/register': (context) => const RegisterView(),
+      },
       debugShowCheckedModeBanner: false,
-      home: const LoginView(),
+      initialRoute: '/login',
     );
   }
 }

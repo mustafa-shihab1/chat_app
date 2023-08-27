@@ -1,3 +1,4 @@
+import 'package:chat_app/view/register_view.dart';
 import 'package:chat_app/widget/box_text_field.dart';
 import 'package:chat_app/widget/main_button.dart';
 import 'package:flutter/material.dart';
@@ -50,8 +51,9 @@ class LoginView extends StatelessWidget {
                       obscureText: true,
                     ),
                     SizedBox(height: screenSize.height * 0.03),
-                    const MainButton(),
-                    // dont have an account
+                    const MainButton(
+                      title: 'Login',
+                    ),
                     SizedBox(height: screenSize.height * 0.01),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -63,7 +65,10 @@ class LoginView extends StatelessWidget {
                           ),
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(context, '/register');
+
+                          },
                           child: const Text(
                             'Register',
                             style: TextStyle(
