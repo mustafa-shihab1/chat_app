@@ -20,15 +20,16 @@ class LoginView extends StatelessWidget {
               const Text(
                 'Scholar Chat',
                 style: TextStyle(
+                  fontFamily: 'Pacifico',
                   color: Colors.white,
                   fontSize: 30,
                 ),
               ),
-              SizedBox(height: screenSize.height * 0.05),
+              SizedBox(height: screenSize.height * 0.06),
               const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'SignIn',
+                  'LOGIN',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 26,
@@ -50,6 +51,28 @@ class LoginView extends StatelessWidget {
                     ),
                     SizedBox(height: screenSize.height * 0.03),
                     const MainButton(),
+                    // dont have an account
+                    SizedBox(height: screenSize.height * 0.01),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Don\'t have an account?',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            'Register',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
