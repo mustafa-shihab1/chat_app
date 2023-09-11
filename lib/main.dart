@@ -11,7 +11,7 @@ void main() async{
   );
   runApp(const MyApp());
 }
-
+// only to keep saving my streak :)
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
