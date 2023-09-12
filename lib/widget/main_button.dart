@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class MainButton extends StatelessWidget {
   final String title;
+  final VoidCallback onTap;
   const MainButton({
     required this.title,
+    required this.onTap,
     super.key,
   });
 
@@ -13,7 +15,7 @@ class MainButton extends StatelessWidget {
       width: double.infinity,
       height: 50,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onTap,
         style: ElevatedButton.styleFrom(
           foregroundColor: const Color(0XFF2B475E),
           backgroundColor: Colors.white,
