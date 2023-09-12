@@ -8,6 +8,8 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? email;
+    String? password;
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: const Color(0XFF2B475E),
@@ -17,7 +19,9 @@ class LoginView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('assets/images/scholar.png',),
+              Image.asset(
+                'assets/images/scholar.png',
+              ),
               const Text(
                 'Scholar Chat',
                 style: TextStyle(
@@ -41,17 +45,24 @@ class LoginView extends StatelessWidget {
               Form(
                 child: Column(
                   children: [
-                    const BoxTextField(
+                    BoxTextField(
                       hintText: 'Email',
                       obscureText: false,
+                      onChanged: (value) {
+                        email = value;
+                      },
                     ),
                     SizedBox(height: screenSize.height * 0.01),
-                    const BoxTextField(
+                    BoxTextField(
                       hintText: 'Password',
                       obscureText: true,
+                      onChanged: (value) {
+                        password = value;
+                      },
                     ),
                     SizedBox(height: screenSize.height * 0.03),
-                    const MainButton(
+                    MainButton(
+                      onTap: () {},
                       title: 'Login',
                     ),
                     SizedBox(height: screenSize.height * 0.01),
@@ -66,8 +77,8 @@ class LoginView extends StatelessWidget {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushReplacementNamed(context, '/register');
-
+                            Navigator.pushReplacementNamed(
+                                context, '/register');
                           },
                           child: const Text(
                             'Register',
@@ -88,5 +99,3 @@ class LoginView extends StatelessWidget {
     );
   }
 }
-
-
