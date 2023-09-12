@@ -3,16 +3,19 @@ import 'package:flutter/material.dart';
 class BoxTextField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
+  final Function(String)? onChanged;
   const BoxTextField({
     required this.hintText,
     required this.obscureText,
+    required this.onChanged,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
+    return TextField(
       obscureText: obscureText,
+      onChanged: onChanged,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: const TextStyle(
