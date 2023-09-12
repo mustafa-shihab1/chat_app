@@ -1,13 +1,21 @@
 import 'package:chat_app/view/login_view.dart';
 import 'package:chat_app/widget/box_text_field.dart';
 import 'package:chat_app/widget/main_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class RegisterView extends StatelessWidget {
+class RegisterView extends StatefulWidget {
   const RegisterView({Key? key}) : super(key: key);
 
   @override
+  State<RegisterView> createState() => _RegisterViewState();
+}
+
+class _RegisterViewState extends State<RegisterView> {
+  @override
   Widget build(BuildContext context) {
+    String? email="mostafaa.sh2001@gmail.com";
+    String? password="123456789";
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: const Color(0XFF2B475E),
@@ -17,7 +25,9 @@ class RegisterView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('assets/images/scholar.png',),
+              Image.asset(
+                'assets/images/scholar.png',
+              ),
               const Text(
                 'Scholar Chat',
                 style: TextStyle(
@@ -41,17 +51,36 @@ class RegisterView extends StatelessWidget {
               Form(
                 child: Column(
                   children: [
-                    const BoxTextField(
+                    BoxTextField(
                       hintText: 'Email',
                       obscureText: false,
+                      onChanged: (value) {
+                        setState(() {
+                          email = value;
+                        });
+                      },
                     ),
                     SizedBox(height: screenSize.height * 0.01),
-                    const BoxTextField(
+                    BoxTextField(
                       hintText: 'Password',
                       obscureText: true,
+                      onChanged: (value) {
+                        setState(() {
+                          password = value;
+                        });
+                      },
                     ),
                     SizedBox(height: screenSize.height * 0.03),
-                     const MainButton(
+                    MainButton(
+                      onTap: () async {
+                        var auth = FirebaseAuth.instance;
+                        UserCredential userCredential =
+                            await auth.createUserWithEmailAndPassword(
+                          email: email!,
+                          password: password!,
+                        );
+                        print(userCredential.user!.email);
+                      },
                       title: 'Register',
                     ),
                     SizedBox(height: screenSize.height * 0.01),
