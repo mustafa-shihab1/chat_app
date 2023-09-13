@@ -1,21 +1,15 @@
-import 'package:chat_app/view/login_view.dart';
-import 'package:chat_app/widget/box_text_field.dart';
-import 'package:chat_app/widget/main_button.dart';
+import 'package:chat_app/features/auth/widget/box_text_field.dart';
+import 'package:chat_app/features/auth/widget/main_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class RegisterView extends StatefulWidget {
+class RegisterView extends StatelessWidget {
   const RegisterView({Key? key}) : super(key: key);
 
   @override
-  State<RegisterView> createState() => _RegisterViewState();
-}
-
-class _RegisterViewState extends State<RegisterView> {
-  @override
   Widget build(BuildContext context) {
-    String? email="mostafaa.sh2001@gmail.com";
-    String? password="123456789";
+    String? email;
+    String? password;
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: const Color(0XFF2B475E),
@@ -55,9 +49,7 @@ class _RegisterViewState extends State<RegisterView> {
                       hintText: 'Email',
                       obscureText: false,
                       onChanged: (value) {
-                        setState(() {
                           email = value;
-                        });
                       },
                     ),
                     SizedBox(height: screenSize.height * 0.01),
@@ -65,14 +57,14 @@ class _RegisterViewState extends State<RegisterView> {
                       hintText: 'Password',
                       obscureText: true,
                       onChanged: (value) {
-                        setState(() {
                           password = value;
-                        });
                       },
                     ),
                     SizedBox(height: screenSize.height * 0.03),
                     MainButton(
                       onTap: () async {
+                        print(email);
+                        print(password);
                         var auth = FirebaseAuth.instance;
                         UserCredential userCredential =
                             await auth.createUserWithEmailAndPassword(

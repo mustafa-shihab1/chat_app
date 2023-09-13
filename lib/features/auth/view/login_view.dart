@@ -1,6 +1,5 @@
-import 'package:chat_app/view/register_view.dart';
-import 'package:chat_app/widget/box_text_field.dart';
-import 'package:chat_app/widget/main_button.dart';
+import 'package:chat_app/features/auth/widget/box_text_field.dart';
+import 'package:chat_app/features/auth/widget/main_button.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatelessWidget {

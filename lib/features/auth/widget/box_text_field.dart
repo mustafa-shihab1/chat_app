@@ -13,7 +13,7 @@ class BoxTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       obscureText: obscureText,
       onChanged: onChanged,
       decoration: InputDecoration(
