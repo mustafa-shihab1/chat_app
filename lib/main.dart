@@ -2,6 +2,7 @@ import 'package:chat_app/firebase_options.dart';
 import 'package:chat_app/routes/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 void main() async{
@@ -20,6 +21,11 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       theme: ThemeData(
         useMaterial3: true,
+        appBarTheme: const AppBarTheme(
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarIconBrightness: Brightness.light,
+          ),
+        ),
       ),
       onGenerateRoute: RouteGenerator.getRoute,
       debugShowCheckedModeBanner: false,
