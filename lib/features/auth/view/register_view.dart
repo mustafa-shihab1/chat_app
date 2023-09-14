@@ -1,3 +1,4 @@
+import 'package:chat_app/core/validator.dart';
 import 'package:chat_app/features/auth/controller/auth_controller.dart';
 import 'package:chat_app/features/auth/widget/box_text_field.dart';
 import 'package:chat_app/features/auth/widget/main_button.dart';
@@ -7,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class RegisterView extends StatelessWidget {
-  const RegisterView({Key? key}) : super(key: key);
+  final FieldValidator _fieldValidator = FieldValidator();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  RegisterView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +49,7 @@ class RegisterView extends StatelessWidget {
                   ),
                   SizedBox(height: screenSize.height * 0.03),
                   Form(
+                    key: _formKey,
                     child: Column(
                       children: [
                         BoxTextField(
@@ -53,6 +57,9 @@ class RegisterView extends StatelessWidget {
                           obscureText: false,
                           onChanged: (value) {
                               controller.emailController.text = value;
+                          },
+                          validator: (value) {
+                            return _fieldValidator.validateEmail(value);
                           },
                         ),
                         SizedBox(height: screenSize.height * 0.01),
@@ -62,14 +69,17 @@ class RegisterView extends StatelessWidget {
                           onChanged: (value) {
                               controller.passwordController.text = value;
                           },
+                          validator: (value) {
+                            return _fieldValidator.validatePassword(value);
+                          },
                         ),
                         SizedBox(height: screenSize.height * 0.03),
                         MainButton(
                           onTap: () async {
-                            print(controller.emailController.text);
-                            print(controller.passwordController);
-                            var auth = FirebaseAuth.instance;
-                            controller.createUserWithEmailAndPassword(auth);
+                            if(_formKey.currentState!.validate()) {
+                              var auth = FirebaseAuth.instance;
+                              controller.createUserWithEmailAndPassword(auth);
+                            }
                           },
                           title: 'Register',
                         ),
