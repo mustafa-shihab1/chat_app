@@ -1,3 +1,4 @@
+import 'package:chat_app/core/validator.dart';
 import 'package:chat_app/features/auth/controller/auth_controller.dart';
 import 'package:chat_app/features/auth/widget/box_text_field.dart';
 import 'package:chat_app/features/auth/widget/main_button.dart';
@@ -7,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginView extends StatelessWidget {
-  const LoginView({Key? key}) : super(key: key);
+  final FieldValidator _fieldValidator = FieldValidator();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  LoginView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +49,7 @@ class LoginView extends StatelessWidget {
                   ),
                   SizedBox(height: screenSize.height * 0.03),
                   Form(
+                    key: _formKey,
                     child: Column(
                       children: [
                         BoxTextField(
@@ -53,6 +57,9 @@ class LoginView extends StatelessWidget {
                           obscureText: false,
                           onChanged: (value) {
                             controller.emailController.text = value;
+                          },
+                          validator: (value) {
+                            return _fieldValidator.validateEmail(value);
                           },
                         ),
                         SizedBox(height: screenSize.height * 0.01),
@@ -62,12 +69,17 @@ class LoginView extends StatelessWidget {
                           onChanged: (value) {
                             controller.passwordController.text = value;
                           },
+                          validator: (value) {
+                            return _fieldValidator.validatePassword(value);
+                          },
                         ),
                         SizedBox(height: screenSize.height * 0.03),
                         MainButton(
                           onTap: () {
-                            var auth = FirebaseAuth.instance;
-                            controller.loginWithEmailAndPassword(auth);
+                            if (_formKey.currentState!.validate()) {
+                              var auth = FirebaseAuth.instance;
+                              controller.loginWithEmailAndPassword(auth);
+                            }
                           },
                           title: 'Login',
                         ),
