@@ -19,9 +19,9 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const SplashView());
       case Routes.loginView:
         initAuthModule();
-        return MaterialPageRoute(builder: (_) => const LoginView());
+        return MaterialPageRoute(builder: (_) => LoginView());
       case Routes.registerView:
-        return MaterialPageRoute(builder: (_) => const RegisterView());
+        return MaterialPageRoute(builder: (_) => RegisterView());
       default:
         return unDefinedRoute();
     }
