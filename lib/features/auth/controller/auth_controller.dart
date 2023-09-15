@@ -34,6 +34,7 @@ class AuthController extends GetxController{
         email: emailController.text,
         password: passwordController.text,
       );
+      Get.offAllNamed(Routes.chatView);
       Get.snackbar(
         'Thanks',
         'Successfully logged in',

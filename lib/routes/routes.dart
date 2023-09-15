@@ -1,6 +1,7 @@
 import 'package:chat_app/config/dependency_injection.dart';
 import 'package:chat_app/features/auth/view/login_view.dart';
 import 'package:chat_app/features/auth/view/register_view.dart';
+import 'package:chat_app/features/chat/view/chat_view.dart';
 import 'package:chat_app/features/splash/view/splash_view.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +9,7 @@ class Routes{
   static const String splashView = '/splash_view';
   static const String loginView = '/login_view';
   static const String registerView = '/register_view';
+  static const String chatView = '/chat_view';
 }
 
 class RouteGenerator {
@@ -22,6 +24,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => LoginView());
       case Routes.registerView:
         return MaterialPageRoute(builder: (_) => RegisterView());
+      case Routes.chatView:
+        return MaterialPageRoute(builder: (_) => const ChatView());
       default:
         return unDefinedRoute();
     }
