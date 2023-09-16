@@ -1,4 +1,5 @@
 import 'package:chat_app/features/chat/widget/chat_bubble.dart';
+import 'package:chat_app/features/chat/widget/send_message_box.dart';
 import 'package:flutter/material.dart';
 
 class ChatView extends StatelessWidget {
@@ -22,11 +23,18 @@ class ChatView extends StatelessWidget {
           ],
         ),
       ),
-      body: ListView.builder(
-          itemBuilder:(context, index) {
-            return ChatBubble(size: size);
-          },
-          itemCount: 10,
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+                itemBuilder:(context, index) {
+                  return ChatBubble(size: size);
+                },
+                itemCount: 10,
+            ),
+          ),
+          const SendMessageBox()
+        ],
       ),
     );
   }
