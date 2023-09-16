@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       ),
       onGenerateRoute: RouteGenerator.getRoute,
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.splashView
+      initialRoute: Routes.chatView
     );
   }
 }
