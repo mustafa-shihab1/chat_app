@@ -1,11 +1,14 @@
 import 'package:chat_app/features/chat/widget/chat_bubble.dart';
 import 'package:chat_app/features/chat/widget/send_message_box.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../routes/routes.dart';
 import '../controller/chat_controller.dart';
 import '../model/message.dart';
+import '../widget/chat_bubble_friend.dart';
 
 class ChatView extends StatelessWidget {
   ChatView({Key? key}) : super(key: key);
@@ -46,6 +49,18 @@ class ChatView extends StatelessWidget {
                       ],
                     ),
                   ),
+                  actions: [
+                    IconButton(
+                      onPressed: () {
+                        FirebaseAuth.instance.signOut();
+                        Get.offAllNamed(Routes.loginView);
+                      },
+                      icon: const Icon(
+                        Icons.logout,
+                        color: Colors.white,
+                      ),
+                    )
+                  ],
                 ),
                 body: Column(
                   children: [
@@ -54,10 +69,16 @@ class ChatView extends StatelessWidget {
                         reverse: true,
                         controller: _scrollController,
                         itemBuilder: (context, index) {
-                          return ChatBubble(
-                            size: size,
-                            message: messagesList[index],
-                          );
+                          return messagesList[index].sender ==
+                                  controller.userEmail
+                              ? ChatBubble(
+                                  size: size,
+                                  message: messagesList[index],
+                                )
+                              : ChatBubbleFriend(
+                                  size: size,
+                                  message: messagesList[index],
+                                );
                         },
                         itemCount: messagesList.length,
                       ),
