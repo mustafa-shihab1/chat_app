@@ -5,7 +5,7 @@ import 'package:chat_app/features/chat/view/chat_view.dart';
 import 'package:chat_app/features/splash/view/splash_view.dart';
 import 'package:flutter/material.dart';
 
-class Routes{
+class Routes {
   static const String splashView = '/splash_view';
   static const String loginView = '/login_view';
   static const String registerView = '/register_view';
@@ -13,7 +13,6 @@ class Routes{
 }
 
 class RouteGenerator {
-
   static Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.splashView:
@@ -25,12 +24,12 @@ class RouteGenerator {
       case Routes.registerView:
         return MaterialPageRoute(builder: (_) => RegisterView());
       case Routes.chatView:
-        return MaterialPageRoute(builder: (_) => const ChatView());
+        initChatModule();
+        return MaterialPageRoute(builder: (_) => ChatView());
       default:
         return unDefinedRoute();
     }
   }
-
 
   static Route<dynamic> unDefinedRoute() {
     return MaterialPageRoute(
@@ -44,5 +43,4 @@ class RouteGenerator {
       ),
     );
   }
-
 }

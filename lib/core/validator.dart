@@ -22,11 +22,10 @@ class FieldValidator {
       return 'Invalid Password';
     }
 
-    if (password.length < 8) {
+    if (password.length < 6) {
       return 'Invalid Password';
     }
 
     return null;
   }
-
 }
